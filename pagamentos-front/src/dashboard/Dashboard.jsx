@@ -1,23 +1,25 @@
 import React, { Component }  from 'react';
+import { connect } from 'react-redux'
 
 import Content from '../common/template/Content';
 import ContentHeader from '../common/template/ContentHeader';
 import ValueBox from '../common/widget/ValueBox';
 import Row from '../common/layout/Row'
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
     render() {
+        const { credit, debt } = this.props.summary
         return (
             <div>
                 <ContentHeader title='Dashboard' small='Versão 1.0' />
                 <Content>
                     <Row>
                         <ValueBox cols='12 4' color='green' icon='bank'
-                            value='R$ 10' text='Total de Créditos' />
+                            value={`R$ ${credit}`} text='Total de Créditos' />
                         <ValueBox cols='12 4' color='red' icon='credit-card'
-                            value='R$ 10' text='Total de Debitos' />
+                            value={`R$ ${debt}`} text='Total de Debitos' />
                         <ValueBox cols='12 4' color='blue' icon='money'
-                            value='R$ 0' text='Valor consolidado' />
+                            value={`R$ ${credit - debt}`} text='Valor consolidado' />
                     </Row>
                 </Content>
             </div>
@@ -25,3 +27,5 @@ export default class Dashboard extends Component {
     }    
 }
 
+const mapStateToProps = state => ({summary: state.dashboard.summary})
+export default connect(mapStateToProps)(Dashboard)
