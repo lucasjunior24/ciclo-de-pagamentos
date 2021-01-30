@@ -10,6 +10,7 @@ import TabHeader from '../common/tab/TabHeader';
 import TabsContent from '../common/tab/TabsContent'
 import TabContent from '../common/tab/TabContent';
 import { selectTab, showTabs } from '../common/tab/tabActions'
+import BCList from './BCList';
 class BillingCycle extends Component {
     componentDidMount() {
         this.props.selectTab('tabList')
@@ -28,7 +29,9 @@ class BillingCycle extends Component {
                             <TabHeader label='Excluir' icon='trash-0' target='tabDelete' />
                         </TabsHeader>
                         <TabsContent>
-                            <TabContent id='tabList'><h1>Lista</h1></TabContent>
+                            <TabContent id='tabList'>
+                                <BCList />
+                            </TabContent>
                             <TabContent id='tabCreate'><h1>Incluir</h1></TabContent>
                             <TabContent id='tabUpdate'><h1>Alterar</h1></TabContent>
                             <TabContent id='tabDelete'><h1>Excluir</h1></TabContent>
