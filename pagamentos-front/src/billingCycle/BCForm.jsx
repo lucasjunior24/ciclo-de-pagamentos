@@ -26,4 +26,4 @@ class BCForm extends Component {
     }
 }
 
-export default reduxForm({form: 'bCForm'})(BCForm)
+export default reduxForm({form: 'bCForm', destroyOnUnmount: false})(BCForm)
