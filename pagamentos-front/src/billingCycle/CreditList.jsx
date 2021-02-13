@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
+import Input from '../common/form/Input'
 import Grid from '../common/layout/Grid'
 
 class CreditList extends Component {
@@ -7,8 +8,18 @@ class CreditList extends Component {
     renderRows() {
         return (
             <tr>
-                <td><Field name='credits[1].name' component='input'/></td>
-                <td><Field name='credits[1].value' component='input'/></td>
+                <td>
+                    <Field name='credits[1].name' 
+                        component={Input} 
+                        readOnly={this.props.readOnly}
+                        placeholder='Informe o nome' />
+                </td>
+                <td>
+                    <Field name='credits[1].value' 
+                        component={Input} 
+                        placeholder='informe o valor'
+                        readOnly={this.props.readOnly} />
+                </td>
                 <td></td>
             </tr>
         )
