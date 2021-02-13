@@ -37,13 +37,16 @@ class BillingCycle extends Component {
                                 <BCList />
                             </TabContent>
                             <TabContent id='tabCreate'>
-                                <BCForm onSubmit={this.props.create} />
+                                <BCForm onSubmit={this.props.create} 
+                                    submitLabel='Incluir' submitClass='primary' />
                             </TabContent>
                             <TabContent id='tabUpdate'>
-                                <BCForm onSubmit={this.props.update} />
+                                <BCForm onSubmit={this.props.update}
+                                    submitLabel='Alterar' submitClass='info' />
                             </TabContent>
                             <TabContent id='tabDelete'>
-                            <BCForm onSubmit={this.props.remove} readOnly={true} />
+                                <BCForm onSubmit={this.props.remove} readOnly={true} 
+                                    submitLabel='Excluir' submitClass='danger' />
                             </TabContent>
                         </TabsContent>
                     </Tabs>
