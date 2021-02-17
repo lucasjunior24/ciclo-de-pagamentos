@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -10,7 +10,7 @@ import CreditList from './CreditList'
 class BCForm extends Component {
 
     render() {
-        const { handleSubmit, readOnly } = this.props
+        const { handleSubmit, readOnly, credits } = this.props
         
         return (
             <form role='form' onSubmit={handleSubmit}>
@@ -21,7 +21,7 @@ class BCForm extends Component {
                         label='Mês' cols='12 4' placeholder='Informe um mês'/>
                     <Field name='year' component={labelAndInput} type='number' readOnly={readOnly}
                         label='Ano' cols='12 4' placeholder='Informe um ano'/>
-                    <CreditList cols='12 6' readOnly={readOnly} />
+                    <CreditList cols='12 6' readOnly={readOnly} list={credits} />
                 </div>
                 <div className='box-footer'>
                     <button type='submit' className={`btn btn-${this.props.submitClass}`}>
@@ -39,5 +39,8 @@ class BCForm extends Component {
 }
 
 BCForm = reduxForm({form: 'bCForm', destroyOnUnmount: false})(BCForm)
+const selector = formValueSelector('bCForm')
+
+const mapStateToProps = state => ({ credits: selector(state, 'credits')})
 const mapDispatchToProps = dispatch => bindActionCreators({init}, dispatch)
-export default connect(null, mapDispatchToProps)(BCForm)
+export default connect(mapStateToProps, mapDispatchToProps)(BCForm)

@@ -9,16 +9,14 @@ import TabsHeader from '../common/tab/TabsHeader';
 import TabHeader from '../common/tab/TabHeader';
 import TabsContent from '../common/tab/TabsContent'
 import TabContent from '../common/tab/TabContent';
-import { selectTab, showTabs } from '../common/tab/tabActions'
-import { create, update, remove } from './billingCycleActions'
+import { init, create, update, remove } from './billingCycleActions'
 
 
 import BCList from './BCList';
 import BCForm from './BCForm';
 class BillingCycle extends Component {
-    componentDidMount() {
-        this.props.selectTab('tabList')
-        this.props.showTabs('tabList', 'tabCreate')
+    componentWillMount() {
+        this.props.init()
     }
     render() {
         return (
@@ -56,6 +54,6 @@ class BillingCycle extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs, create, update, remove}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({init, create, update, remove}, dispatch)
 
 export default connect(null, mapDispatchToProps)(BillingCycle)
