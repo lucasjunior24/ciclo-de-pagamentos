@@ -5,16 +5,16 @@ import { Field, arrayInsert, arrayRemove } from 'redux-form'
 import Input from '../common/form/Input'
 import Grid from '../common/layout/Grid'
 
-class CreditList extends Component {
+class ItemList extends Component {
     add(index, item = {}) {
         if(!this.props.readOnly) {
-            this.props.arrayInsert('bCForm', 'credits', index, item)
+            this.props.arrayInsert('bCForm', this.props.field, index, item)
         }
     }
 
     remove(index) {
        if(!this.props.readOnly && this.props.list.length > 1) {
-            this.props.arrayRemove('bCForm', 'credits', index)
+            this.props.arrayRemove('bCForm', this.props.field, index)
        } 
     }
 
@@ -23,13 +23,13 @@ class CreditList extends Component {
         return list.map((item, index) => (
             <tr key={index}>
                 <td>
-                    <Field name={`credits[${index}].name`}
+                    <Field name={`${this.props.field}[${index}].name`}
                         component={Input} 
                         readOnly={this.props.readOnly}
                         placeholder='Informe o nome' />
                 </td>
                 <td>
-                    <Field name={`credits[${index}].value`} 
+                    <Field name={`${this.props.field}[${index}].value`} 
                         component={Input} 
                         placeholder='informe o valor'
                         readOnly={this.props.readOnly} />
@@ -59,7 +59,7 @@ class CreditList extends Component {
         return (
             <Grid cols={this.props.cols}>
                 <fieldset>
-                    <legend>Créditos</legend>
+                    <legend>{this.props.legend}</legend>
                     <table className='table'>
                         <thead>
                             <tr>
@@ -80,4 +80,4 @@ class CreditList extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({arrayInsert, arrayRemove}, dispatch)
-export default connect(null, mapDispatchToProps)(CreditList)
+export default connect(null, mapDispatchToProps)(ItemList)
