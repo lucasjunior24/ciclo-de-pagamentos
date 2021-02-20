@@ -15,7 +15,6 @@ module.exports = function(server) {
     const BillingCycle = require('../api/billingCycleService')
     BillingCycle.register(protectedApi, '/billingCycles')
 
-
         /*
          * Rotas Abertas
          */
