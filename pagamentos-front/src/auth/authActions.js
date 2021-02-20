@@ -30,3 +30,17 @@ function submit(values, url) {
 export function logout() {
     return { type: 'TOKEN_VALIDATED', payload: false }
 }
+
+export function validateToken() {
+    return dispach => {
+        if(token) {
+            axios.post(`${consts.OAPI_URL}/validateToken`, { token })
+                .then(resp => {
+                    dispach({ type: 'TOKEN_VALIDATED', payload: resp.data.valid })
+                })
+                .catch(e => dispach({ type: 'TOKEN_VALIDATED', payload: false }))
+        } else {
+            dispach({ type: 'TOKEN_VALIDATED', payload: false })
+        }
+    }
+}
