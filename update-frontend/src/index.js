@@ -2,12 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
-import reportWebVitals from './reportWebVitals';
+// import reportWebVitals from './reportWebVitals';
 
 import promise from 'redux-promise'
 import multi from 'redux-multi'
 import thunk from 'redux-thunk'
-
 
 import AuthOrApp from './main/authOrApp'
 import reducers from './main/reducers'
@@ -21,4 +20,4 @@ ReactDOM.render(
     </Provider>
 , document.getElementById('app'))
 
-reportWebVitals();
+// reportWebVitals();

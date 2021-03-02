@@ -22,8 +22,8 @@ module.exports = function(server) {
     const openApi = express.Router()
     server.use('/oapi', openApi)
 
-    const AuthServise = require('../api/user/authService')
-    openApi.post('/login', AuthServise.login)
-    openApi.post('/signup', AuthServise.signup)
-    openApi.post('/validateToken', AuthServise.validateToken)
+    const AuthService = require('../api/user/authService')
+    openApi.post('/login', AuthService.login)
+    openApi.post('/signup', AuthService.signup)
+    openApi.post('/validateToken', AuthService.validateToken)
 }
